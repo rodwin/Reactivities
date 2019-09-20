@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Application.Activities
 {
@@ -15,15 +16,18 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Query, List<Activity>>
         {
             private readonly DataContext _context;
-            public Handler(DataContext context)
+            private readonly ILogger<List> _logger;
+
+            public Handler(DataContext context, ILogger<List> logger)
             {
                 _context = context;
+                _logger = logger;
             }
 
             public async Task<List<Activity>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var activities = await _context.Activities.ToListAsync();
-
+                var activities = await _context.Activities.ToListAsync(cancellationToken);
+                _logger.LogInformation($"retrived {activities.Count} activites");
                 return activities;
             }
         }
