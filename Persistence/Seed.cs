@@ -25,13 +25,13 @@ namespace Persistence
                     {
                         DisplayName = "Bob",
                         UserName = "Bob",
-                        Email = "Bob@gmail.com",
+                        Email = "Bob@test.com",
                     },
                     new AppUser
                     {
                         DisplayName = "Jane",
                         UserName = "Jane",
-                        Email = "Jane@gmail.com",
+                        Email = "Jane@test.com",
                     },
                 };
 
