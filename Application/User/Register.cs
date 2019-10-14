@@ -81,7 +81,7 @@ namespace Application.User
                         DisplayName = user.DisplayName,
                         Token = _jWTGenerator.CreateToken(user),
                         Username = user.UserName,
-                        Image = null
+                        Image =  user.Photos.FirstOrDefault(x => x.IsMain)?.Url,//useless for now but just to be consistent
                     };
                 }
 
