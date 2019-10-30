@@ -1,9 +1,19 @@
 import React from 'react';
-import { Segment, Item, Header, Button, Grid, Statistic, Divider, Reveal } from 'semantic-ui-react';
+import {
+  Segment,
+  Item,
+  Header,
+  Button,
+  Grid,
+  Statistic,
+  Divider,
+  Reveal
+} from 'semantic-ui-react';
 import { IProfile } from '../../app/models/profile';
+import { observer } from 'mobx-react-lite';
 
 interface IProps {
-    profile: IProfile
+  profile: IProfile
 }
 
 const ProfileHeader: React.FC<IProps> = ({profile}) => {
@@ -13,11 +23,7 @@ const ProfileHeader: React.FC<IProps> = ({profile}) => {
         <Grid.Column width={12}>
           <Item.Group>
             <Item>
-              <Item.Image
-                avatar
-                size='small'
-                src={profile.image || '/assets/user.png'}
-              />
+              <Item.Image avatar size='small' src={profile.image || '/assets/user.png'} />
               <Item.Content verticalAlign='middle'>
                 <Header as='h1'>{profile.displayName}</Header>
               </Item.Content>
@@ -26,17 +32,13 @@ const ProfileHeader: React.FC<IProps> = ({profile}) => {
         </Grid.Column>
         <Grid.Column width={4}>
           <Statistic.Group widths={2}>
-            <Statistic label='Followers' value='5'/>
-            <Statistic label='Following' value='42'/>
+            <Statistic label='Followers' value='5' />
+            <Statistic label='Following' value='42' />
           </Statistic.Group>
-          <Divider/>
+          <Divider />
           <Reveal animated='move'>
             <Reveal.Content visible style={{ width: '100%' }}>
-              <Button
-                fluid
-                color='teal'
-                content='Following'
-              />
+              <Button fluid color='teal' content='Following' />
             </Reveal.Content>
             <Reveal.Content hidden>
               <Button
@@ -53,4 +55,4 @@ const ProfileHeader: React.FC<IProps> = ({profile}) => {
   );
 };
 
-export default ProfileHeader;
+export default observer(ProfileHeader);

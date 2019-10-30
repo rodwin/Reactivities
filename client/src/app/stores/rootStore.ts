@@ -13,7 +13,7 @@ export class RootStore {
     userStore: UserStore;
     commonStore: CommonStore;
     modalStore: ModalStore;
-    profileStore: ProfileStore
+    profileStore: ProfileStore;
 
     constructor() {
         this.activityStore = new ActivityStore(this);
@@ -21,7 +21,6 @@ export class RootStore {
         this.commonStore = new CommonStore(this);
         this.modalStore = new ModalStore(this);
         this.profileStore = new ProfileStore(this);
-
     }
 }
 
