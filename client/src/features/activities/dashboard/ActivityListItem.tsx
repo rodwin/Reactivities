@@ -15,26 +15,34 @@ const ActivityListItem: React.FC<{ activity: IActivity }> = ({ activity }) => {
               size="tiny"
               circular
               src={host.image || "/assets/user.png"}
+              style={{ marginBottom: 5 }}
             ></Item.Image>
             <Item.Content>
-              <Item.Header as={Link} to={`/activities/${activity.isHost}`}>{activity.title}</Item.Header>
-              <Item.Description>Hosted by {host.displayName}</Item.Description>
-              {activity.isHost &&
+              <Item.Header as={Link} to={`/activities/${activity.isHost}`}>
+                {activity.title}
+              </Item.Header>
               <Item.Description>
-                <Label
-                  basic
-                  color="orange"
-                  content="You are hosting this activity"
-                ></Label>
-              </Item.Description>}
-              {activity.isGoing && !activity.isHost &&
-              <Item.Description>
-                <Label
-                  basic
-                  color="green"
-                  content="You are going to this activity"
-                ></Label>
-              </Item.Description>}
+                Hosted by
+                <Link to={`/profile/${host.username}`}> {host.displayName}</Link>
+              </Item.Description>
+              {activity.isHost && (
+                <Item.Description>
+                  <Label
+                    basic
+                    color="orange"
+                    content="You are hosting this activity"
+                  ></Label>
+                </Item.Description>
+              )}
+              {activity.isGoing && !activity.isHost && (
+                <Item.Description>
+                  <Label
+                    basic
+                    color="green"
+                    content="You are going to this activity"
+                  ></Label>
+                </Item.Description>
+              )}
             </Item.Content>
           </Item>
         </Item.Group>
